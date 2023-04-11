@@ -1,15 +1,19 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
-import { map, Observable } from 'rxjs';
-import { Summoner } from '../../entities/summoner.entity';
+import { SummonerDto } from '../../entities/summoner.dto';
 import { SummonerService } from './summoner.service';
 
 @Controller('summoner')
 export class SummonerController {
   constructor(private summonerService: SummonerService) {}
 
-  @Get('/by-name/:summonerName')
-  public getSummonerByName(@Param('summonerName') summonerName: string): Observable<Summoner> {
-    return this.summonerService.getSummonerByName(summonerName).pipe(map((response) => response.data));
+  /**
+   * @description Gets summoner's by its name.
+   * @param {string} summonerName SummonerDto's name. 
+   * @returns SummonerDto's data.
+   */
+  @Get('/by-name/:summonerName/:region')
+  public getSummonerByName(@Param('summonerName') summonerName: string, @Param('region') region: string): Promise<SummonerDto> {
+    return this.summonerService.getSummonerByName(summonerName, region);
   }
 }
