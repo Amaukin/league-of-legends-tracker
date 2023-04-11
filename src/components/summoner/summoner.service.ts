@@ -1,19 +1,20 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 import { AppService } from '../../app.service';
+import { HttpRequestService } from '../http-request/http-request.service';
+import { PATH_CONSTANTS } from '../../constants/path.constants';
 import { RiotDeveloperConfig } from '../../types/riot-developer-config.interface';
-import { Summoner } from '../../entities/summoner.entity';
-import { SUMMONER_CONSTANTS } from '../../constants/summoner.constants';
+import { SummonerDto } from '../../entities/summoner.dto';
 
 @Injectable()
 export class SummonerService {
   private riotDeveloperConfig: RiotDeveloperConfig; 
   constructor(
     private appService: AppService,
+    private httpRequestService: HttpRequestService,
     private httpService: HttpService
   ) {
     this.riotDeveloperConfig = this.appService.getRiotDeveloperConfig();
@@ -21,18 +22,18 @@ export class SummonerService {
 
   /**
    * @description Finds a summoner by its name.
-   * @param {string} summonerName Summoner's name. 
+   * @param {string} summonerName SummonerDto's name. 
    * @returns Found summoner by summoner's name.
    */
-  public getSummonerByName(summonerName: string): Observable<AxiosResponse<Summoner>> {
-    const encodedSummonerName = encodeURIComponent(summonerName);
-    const url = `${this.riotDeveloperConfig.baseUrl}${SUMMONER_CONSTANTS.BY_NAME_PATH}${encodedSummonerName}`;
-    const apiKey = this.riotDeveloperConfig.apiKey;
+  public async getSummonerByName(summonerName: string, region: string): Promise<SummonerDto> {
+    const { config, url } = this.httpRequestService.getRiotDeveloperRequest({summonerName, region}, PATH_CONSTANTS.SUMMONER_BY_NAME_PATH);
 
-    const config: AxiosRequestConfig = {
-      params: { api_key: apiKey },
-    };
+    try {
+      const response = await lastValueFrom(this.httpService.get(url, config));
+      return response.data;
+    } catch (error) {
+      console.log('An error has ocurred.', error);
+    }
 
-    return this.httpService.get(url, config);
   }
 }
