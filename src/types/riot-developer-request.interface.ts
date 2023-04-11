@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 
 export interface RiotDeveloperRequest {
-    config: AxiosRequestConfig,
-    url: string;
+  config: AxiosRequestConfig,
+  url: string;
 }

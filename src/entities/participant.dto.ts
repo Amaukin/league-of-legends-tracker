@@ -1,3 +1,4 @@
+import { ChallengeDto } from './challenge.dto';
 import { PerksDto } from './perks.dto';
 
 export class ParticipantDto {
@@ -9,6 +10,7 @@ export class ParticipantDto {
   championId: number;
   championName: string;
   championTransform: number;
+  challenges: ChallengeDto;
   consumablesPurchased: number;
   damageDealtToBuildings: number;
   damageDealtToObjectives: number;

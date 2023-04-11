@@ -32,7 +32,7 @@ export class SummonerService {
       const response = await lastValueFrom(this.httpService.get(url, config));
       return response.data;
     } catch (error) {
-      console.log('An error has ocurred.', error);
+      console.log('An error has ocurred.', error.response.status, error.response.statusText);
     }
 
   }
