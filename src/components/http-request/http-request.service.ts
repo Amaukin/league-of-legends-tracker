@@ -27,6 +27,10 @@ export class HttpRequestService {
   public getRiotDeveloperRequest(riotDeveloperParams: RiotDeveloperParams, path: string): RiotDeveloperRequest {
     let url = PATH_CONSTANTS.HTTPS;
     switch(path) {
+      case PATH_CONSTANTS.LEAGUE_BY_ID:
+        url += riotDeveloperParams.region + this.riotDeveloperConfig.baseUrl;
+        url += path + riotDeveloperParams.leagueId;
+        break;
       case PATH_CONSTANTS.LEAGUE_ENTRY_BY_ID:
         url += riotDeveloperParams.region + this.riotDeveloperConfig.baseUrl;
         url += path + riotDeveloperParams.id;
