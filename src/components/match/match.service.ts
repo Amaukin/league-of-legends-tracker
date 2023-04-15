@@ -43,7 +43,7 @@ export class MatchService {
 
       return matches;
     } catch (error) {
-      console.log('An error has ocurred.', error.response.status, error.response.statusText);
+      throw new Error('An error has ocurred. ' + error.response.status + error.response.statusText);
     }
   }
 
@@ -81,7 +81,7 @@ export class MatchService {
       const mappedMatch = new MappedMatchDto();
       mappedMatch.assists = participant.assists;
       mappedMatch.championUsedId = participant.championId;
-      mappedMatch.csPerMinute = participant.totalMinionsKilled / match.info.gameDuration / ONE_MINUTE;
+      mappedMatch.csPerMinute = participant.totalMinionsKilled / (match.info.gameDuration / ONE_MINUTE);
       mappedMatch.kda = participant.challenges.kda;
       mappedMatch.kills = participant.kills;
       mappedMatch.runes = participant.perks.styles;
@@ -132,12 +132,12 @@ export class MatchService {
             matches.push(match);
           }
         } catch (error) {
-          console.log('An error has ocurred.', error.response.status, error.response.statusText);
+          throw new Error('An error has ocurred. ' + error.response.status + error.response.statusText);
           break;
         }
       }
     } catch (error) {
-      console.log('An error has ocurred.', error.response.status, error.response.statusText);
+      throw new Error('An error has ocurred. ' + error.response.status + error.response.statusText);
     }
     
     return matches;

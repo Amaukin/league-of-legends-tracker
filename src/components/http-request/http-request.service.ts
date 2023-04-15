@@ -27,18 +27,21 @@ export class HttpRequestService {
   public getRiotDeveloperRequest(riotDeveloperParams: RiotDeveloperParams, path: string): RiotDeveloperRequest {
     let url = PATH_CONSTANTS.HTTPS;
     switch(path) {
-      case PATH_CONSTANTS.SUMMONER_BY_NAME_PATH:
+      case PATH_CONSTANTS.LEAGUE_ENTRY_BY_ID:
         url += riotDeveloperParams.region + this.riotDeveloperConfig.baseUrl;
-        url += path + riotDeveloperParams.summonerName;
-        break;
-      case PATH_CONSTANTS.RECENT_MATCHES_BY_PUUID_PATH:
-        url += PATH_CONSTANTS.AMERICAS + this.riotDeveloperConfig.baseUrl;
-        console.log('apapapap', this.getStartCountParams(riotDeveloperParams));
-        url += path + riotDeveloperParams.puuid + PATH_CONSTANTS.IDS + this.getStartCountParams(riotDeveloperParams);
+        url += path + riotDeveloperParams.id;
         break;
       case PATH_CONSTANTS.MATCH_PATH:
         url += PATH_CONSTANTS.AMERICAS + this.riotDeveloperConfig.baseUrl;
         url +=  path + riotDeveloperParams.matchId;
+        break;
+      case PATH_CONSTANTS.RECENT_MATCHES_BY_PUUID_PATH:
+        url += PATH_CONSTANTS.AMERICAS + this.riotDeveloperConfig.baseUrl;
+        url += path + riotDeveloperParams.puuid + PATH_CONSTANTS.IDS + this.getStartCountParams(riotDeveloperParams);
+        break;
+      case PATH_CONSTANTS.SUMMONER_BY_NAME_PATH:
+        url += riotDeveloperParams.region + this.riotDeveloperConfig.baseUrl;
+        url += path + riotDeveloperParams.summonerName;
         break;
       default:
         break;
