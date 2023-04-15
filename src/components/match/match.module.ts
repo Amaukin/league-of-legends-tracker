@@ -5,6 +5,7 @@ import { AppService } from '../../app.service';
 import { HttpRequestService } from '../http-request/http-request.service';
 import { MatchController } from './match.controller';
 import { MatchService } from './match.service';
+import { PlayerSummaryService } from '../player-summary/player-summary.service';
 import { SummonerService } from '../summoner/summoner.service';
 
 @Module({
@@ -14,6 +15,7 @@ import { SummonerService } from '../summoner/summoner.service';
     AppService,
     HttpRequestService,
     MatchService,
+    PlayerSummaryService,
     SummonerService,
   ],
 })

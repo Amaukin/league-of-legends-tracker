@@ -1,4 +1,5 @@
 import { ConfigModule } from '@nestjs/config';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
@@ -12,6 +13,7 @@ import { SummonerModule } from './components/summoner/summoner.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    EventEmitterModule.forRoot(),
     HttpRequestModule,
     LeaderboardModule,
     MatchModule,
