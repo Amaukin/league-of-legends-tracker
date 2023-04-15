@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "7dfa1062-5676-40a6-bc26-5a7e83da872f",
+		"name": "league-of-legends-tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17708860"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Riot-Token",
+						"value": "RGAPI-8840be4f-2d8c-4a34-b30c-d1587877f86b",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://americas.api.riotgames.com/lol/match/v5/matches/NA1_4626370978",
+					"protocol": "https",
+					"host": [
+						"americas",
+						"api",
+						"riotgames",
+						"com"
+					],
+					"path": [
+						"lol",
+						"match",
+						"v5",
+						"matches",
+						"NA1_4626370978"
+					],
+					"query": [
+						{
+							"key": "Authorization",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Summoner by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/summoner/by-name/TTV%20LegitKorea/NA1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"summoner",
+						"by-name",
+						"TTV%20LegitKorea",
+						"NA1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recent matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/matches/recent-matches/TTV%20LegitKorea/NA1/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matches",
+						"recent-matches",
+						"TTV%20LegitKorea",
+						"NA1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recent matches pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/matches/recent-matches/TTV%20LegitKorea/NA1/420/80",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matches",
+						"recent-matches",
+						"TTV%20LegitKorea",
+						"NA1",
+						"420",
+						"80"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recent matches pagination mapped",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/matches/recent-matches/TTV%20LegitKorea/NA1/420/80/-OjSA0XDj0LyP5HaUXXRTmp-rRK9tEUCP__fDHrGwIUNUcQ9z2-ADiX6ufXHA4SQr5lUeVvfqyPU1A",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matches",
+						"recent-matches",
+						"TTV%20LegitKorea",
+						"NA1",
+						"420",
+						"80",
+						"-OjSA0XDj0LyP5HaUXXRTmp-rRK9tEUCP__fDHrGwIUNUcQ9z2-ADiX6ufXHA4SQr5lUeVvfqyPU1A"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/player-summary/TTV%20LegitKorea/NA1/420",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"player-summary",
+						"TTV%20LegitKorea",
+						"NA1",
+						"420"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Leaderboard (last searched user from matches or summary)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/leaderboard/current-summoner",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"leaderboard",
+						"current-summoner"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
